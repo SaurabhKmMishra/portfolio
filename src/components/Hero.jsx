@@ -120,7 +120,7 @@ const Hero = () => {
             <motion.a
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              href="#"
+              href="https://drive.google.com/file/d/1dI7KElh9Pc-ZYYyVjinc0E8FzGq_TEAP/view?usp=sharing"
               className="btn btn-outline"
             >
               Resume <Download size={16} />
