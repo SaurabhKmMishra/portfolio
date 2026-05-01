@@ -8,7 +8,7 @@ const Certifications = () => {
   return (
     <section id="certifications">
       <div className="container">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -22,89 +22,133 @@ const Certifications = () => {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '2rem'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+          gap: '1.5rem',
         }}>
           {certifications.map((cert, idx) => (
-            <motion.div 
-              key={cert.id} 
-              initial={{ opacity: 0, y: 30 }}
+            <motion.div
+              key={cert.id}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: idx * 0.15 }}
-              whileHover={{ 
-                y: -8, 
-                boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-                borderColor: 'var(--accent)'
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="glass-panel"
+              style={{
+                padding: 'clamp(1.5rem, 3vw, 2.25rem)',
+                display: 'flex',
+                flexDirection: 'column',
+                position: 'relative',
+                overflow: 'hidden',
               }}
-              className="glass-panel" 
-              style={{ padding: '2.5rem', position: 'relative', overflow: 'hidden' }}
             >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
-                <div style={{ 
-                  width: '45px', 
-                  height: '45px', 
-                  borderRadius: '12px', 
-                  background: 'var(--accent-dim)', 
-                  display: 'flex', 
-                  alignItems: 'center', 
+              {/* Top row: icon + date */}
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'flex-start',
+                marginBottom: '1.25rem',
+              }}>
+                <div style={{
+                  width: '42px',
+                  height: '42px',
+                  borderRadius: '12px',
+                  background: 'var(--accent-dim)',
+                  border: '1px solid rgba(129,140,248,0.12)',
+                  display: 'flex',
+                  alignItems: 'center',
                   justifyContent: 'center',
-                  color: 'var(--accent)'
+                  color: 'var(--accent)',
                 }}>
-                  <Award size={24} />
+                  <Award size={20} />
                 </div>
-                <div className="mono-text" style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
+                <div className="mono-text" style={{
+                  fontSize: '0.72rem',
+                  color: 'var(--muted)',
+                  letterSpacing: '0.04em',
+                }}>
                   {cert.date}
                 </div>
               </div>
-              
-              <h3 style={{ fontSize: '1.4rem', marginBottom: '0.5rem', color: 'var(--white)' }}>{cert.name}</h3>
-              <div className="mono-text" style={{ fontSize: '0.85rem', color: 'var(--muted)', marginBottom: '1.5rem' }}>
+
+              {/* Name & issuer */}
+              <h3 style={{
+                fontSize: 'clamp(1.1rem, 2vw, 1.25rem)',
+                marginBottom: '0.4rem',
+                color: 'var(--white)',
+                lineHeight: 1.3,
+              }}>
+                {cert.name}
+              </h3>
+              <div className="mono-text" style={{
+                fontSize: '0.78rem',
+                color: 'var(--muted)',
+                marginBottom: '1rem',
+              }}>
                 {cert.issuer}
               </div>
-              
+
+              {/* Credential ID */}
               {cert.credentialId && (
-                <div className="mono-text" style={{ fontSize: '0.75rem', color: 'var(--muted)', marginBottom: '1rem', wordBreak: 'break-all' }}>
-                  Credential ID: {cert.credentialId}
+                <div className="mono-text" style={{
+                  fontSize: '0.68rem',
+                  color: 'var(--muted)',
+                  marginBottom: '0.75rem',
+                  wordBreak: 'break-all',
+                  opacity: 0.7,
+                }}>
+                  ID: {cert.credentialId}
                 </div>
               )}
 
+              {/* Skill tags */}
               {cert.skills && (
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                <div style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: '0.4rem',
+                  marginBottom: '1.25rem',
+                }}>
                   {cert.skills.map((skill, i) => (
-                    <span key={i} className="mono-text" style={{ 
-                      fontSize: '0.7rem', 
-                      padding: '0.3rem 0.6rem', 
-                      background: 'var(--glass-border)',
-                      borderRadius: '4px',
-                      color: 'var(--text)'
-                    }}>
+                    <span key={i} className="tag">
                       {skill}
                     </span>
                   ))}
                 </div>
               )}
-              
-              <motion.a 
-                whileHover={{ x: 5, color: 'var(--white)' }}
+
+              {/* Link */}
+              <motion.a
+                whileHover={{ x: 4 }}
                 href={cert.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.5rem',
+                  gap: '0.4rem',
                   color: 'var(--accent)',
                   textDecoration: 'none',
-                  fontFamily: 'var(--mono)',
-                  fontSize: '0.85rem',
+                  fontFamily: 'var(--sans)',
+                  fontSize: '0.82rem',
                   fontWeight: 500,
                   marginTop: 'auto',
-                  padding: 0
+                  paddingTop: '0.5rem',
+                  transition: 'opacity 0.2s',
                 }}
               >
-                Show Credential <ExternalLink size={16} />
+                Show Credential <ExternalLink size={14} />
               </motion.a>
+
+              {/* Subtle corner gradient decoration */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                width: '100px',
+                height: '100px',
+                background: 'radial-gradient(circle at top right, rgba(129,140,248,0.06), transparent 70%)',
+                pointerEvents: 'none',
+              }} />
             </motion.div>
           ))}
         </div>

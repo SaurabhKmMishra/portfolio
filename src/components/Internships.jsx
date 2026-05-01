@@ -5,9 +5,9 @@ const Internships = () => {
   const experience = useSelector(state => state.portfolio.experience);
 
   return (
-    <section id="internships" style={{ background: 'var(--surface)' }}>
+    <section id="internships">
       <div className="container">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -19,53 +19,65 @@ const Internships = () => {
           <div className="section-line" />
         </motion.div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           {experience.map((exp, idx) => (
-            <motion.div 
-              key={exp.id} 
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+            <motion.div
+              key={exp.id}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: idx * 0.15 }}
-              whileHover={{ x: 10 }}
-              className="glass-panel" 
-              style={{ 
-                padding: '3rem',
-                display: 'grid',
-                gridTemplateColumns: '1fr',
-                gap: '1.5rem',
-                borderLeft: '4px solid var(--accent)'
+              transition={{ duration: 0.5, delay: idx * 0.12 }}
+              className="glass-panel"
+              style={{
+                padding: 'clamp(1.5rem, 3vw, 2.5rem)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1.25rem',
+                borderLeft: '3px solid var(--accent)',
+                borderImage: 'var(--gradient) 1',
               }}
             >
               <div>
-                <div className="mono-text" style={{ color: 'var(--accent)', fontSize: '0.85rem', marginBottom: '0.5rem' }}>
+                <div className="mono-text" style={{
+                  fontSize: '0.78rem',
+                  background: 'var(--gradient)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  marginBottom: '0.5rem',
+                  fontWeight: 500,
+                }}>
                   {exp.period}
                 </div>
-                <h3 style={{ fontSize: '1.5rem', color: 'var(--white)', marginBottom: '0.5rem' }}>
+                <h3 style={{
+                  fontSize: 'clamp(1.15rem, 2.5vw, 1.4rem)',
+                  color: 'var(--white)',
+                  marginBottom: '0.4rem',
+                }}>
                   {exp.role}
                 </h3>
-                <div className="mono-text" style={{ fontSize: '0.9rem', color: 'var(--muted)' }}>
+                <div className="mono-text" style={{
+                  fontSize: '0.82rem',
+                  color: 'var(--muted)',
+                }}>
                   {exp.company} • {exp.location}
                 </div>
               </div>
-              
-              <div>
-                <p style={{ color: 'var(--muted)', marginBottom: '1.5rem' }}>
-                  {exp.description}
-                </p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                  {exp.tags.map((tag, i) => (
-                    <span key={i} className="mono-text" style={{ 
-                      fontSize: '0.7rem', 
-                      padding: '0.3rem 0.6rem', 
-                      border: '1px solid var(--glass-border)',
-                      borderRadius: '4px',
-                      color: 'var(--text)'
-                    }}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+
+              <p style={{
+                color: 'var(--muted)',
+                fontSize: '0.9rem',
+                lineHeight: 1.75,
+              }}>
+                {exp.description}
+              </p>
+
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                {exp.tags.map((tag, i) => (
+                  <span key={i} className="tag">
+                    {tag}
+                  </span>
+                ))}
               </div>
             </motion.div>
           ))}

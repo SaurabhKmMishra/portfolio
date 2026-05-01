@@ -10,125 +10,186 @@ const Hero = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
+      transition: { staggerChildren: 0.12, delayChildren: 0.2 }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }
   };
 
   return (
-    <section id="home" style={{ 
-      minHeight: '100vh', 
-      display: 'flex', 
-      alignItems: 'center', 
+    <section id="home" style={{
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
       justifyContent: 'center',
-      paddingTop: '6rem',
-      position: 'relative'
+      paddingTop: '5rem',
+      position: 'relative',
     }}>
-      <div className="container" style={{ 
-        display: 'flex', 
-        flexDirection: 'column', 
-        alignItems: 'center', 
-        textAlign: 'center' 
+      <div className="container" style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
       }}>
-        
-        {/* Central Content */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          style={{ 
-            zIndex: 2, 
-            display: 'flex', 
-            flexDirection: 'column', 
-            alignItems: 'center' 
+          style={{
+            zIndex: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            maxWidth: '680px',
           }}
         >
-          <motion.div variants={itemVariants} className="mono-text accent-text" style={{ fontSize: '0.9rem', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem' }}>
+          <motion.div
+            variants={itemVariants}
+            className="mono-text"
+            style={{
+              fontSize: '0.8rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              marginBottom: '1.5rem',
+              background: 'var(--gradient)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              fontWeight: 500,
+            }}
+          >
             {tagline}
           </motion.div>
-          
-          <motion.h1 variants={itemVariants} style={{ fontSize: 'clamp(3rem, 5vw, 5rem)', lineHeight: 1.1, marginBottom: '1rem' }}>
-            Hi, I'm <br />
-            <span style={{ fontStyle: 'italic', color: 'var(--accent)' }}>{name.split(' ')[0]}</span>
+
+          <motion.h1 variants={itemVariants} style={{
+            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+            lineHeight: 1.1,
+            marginBottom: '1rem',
+            letterSpacing: '-0.03em',
+          }}>
+            Hi, I'm{' '}
+            <span style={{
+              fontFamily: 'var(--serif)',
+              fontStyle: 'italic',
+              background: 'var(--gradient)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}>{name.split(' ')[0]}</span>
           </motion.h1>
-          
-          <motion.h2 variants={itemVariants} className="mono-text" style={{ fontSize: '1.2rem', color: 'var(--muted)', marginBottom: '2rem', fontWeight: 400 }}>
+
+          <motion.h2 variants={itemVariants} style={{
+            fontSize: 'clamp(0.95rem, 2vw, 1.15rem)',
+            color: 'var(--muted)',
+            marginBottom: '1.5rem',
+            fontWeight: 400,
+            fontFamily: 'var(--mono)',
+            letterSpacing: '0.04em',
+          }}>
             {role}
           </motion.h2>
-          
-          <motion.p variants={itemVariants} style={{ fontSize: '1.05rem', color: 'var(--muted)', maxWidth: '600px', marginBottom: '3rem' }}>
+
+          <motion.p variants={itemVariants} style={{
+            fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
+            color: 'var(--muted)',
+            maxWidth: '520px',
+            marginBottom: '2.5rem',
+            lineHeight: 1.8,
+          }}>
             {bio}
           </motion.p>
-          
-          <motion.div variants={itemVariants} style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '2rem' }}>
-            <motion.a 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="#internships" 
+
+          <motion.div variants={itemVariants} className="hero-buttons" style={{
+            display: 'flex',
+            gap: '1rem',
+            justifyContent: 'center',
+            marginBottom: '2.5rem',
+            flexWrap: 'wrap',
+          }}>
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              href="#internships"
               className="btn btn-primary"
             >
-              View Work <ArrowRight size={18} />
+              View Work <ArrowRight size={16} />
             </motion.a>
-            <motion.a 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="#" 
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              href="#"
               className="btn btn-outline"
             >
-              Resume <Download size={18} />
+              Resume <Download size={16} />
             </motion.a>
           </motion.div>
 
-          <motion.div variants={itemVariants} style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
-            <motion.a whileHover={{ y: -3, color: 'var(--accent)' }} href="https://www.linkedin.com/in/skmsaurabh" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--muted)', transition: 'color 0.2s' }}>
-              <FaLinkedin size={22} />
-            </motion.a>
-            <motion.a whileHover={{ y: -3, color: 'var(--accent)' }} href="https://github.com/SaurabhKmMishra" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--muted)', transition: 'color 0.2s' }}>
-              <FaGithub size={22} />
-            </motion.a>
-            <motion.a whileHover={{ y: -3, color: 'var(--accent)' }} href="https://x.com/SaurabhMis99897" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--muted)', transition: 'color 0.2s' }}>
-              <FaTwitter size={22} />
-            </motion.a>
-            <motion.a whileHover={{ y: -3, color: 'var(--accent)' }} href="https://www.instagram.com/saurabh_mishra.96/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--muted)', transition: 'color 0.2s' }}>
-              <FaInstagram size={22} />
-            </motion.a>
+          <motion.div variants={itemVariants} style={{
+            display: 'flex',
+            gap: '1.25rem',
+            justifyContent: 'center',
+          }}>
+            {[
+              { icon: FaLinkedin, href: 'https://www.linkedin.com/in/skmsaurabh' },
+              { icon: FaGithub, href: 'https://github.com/SaurabhKmMishra' },
+              { icon: FaTwitter, href: 'https://x.com/SaurabhMis99897' },
+              { icon: FaInstagram, href: 'https://www.instagram.com/saurabh_mishra.96/' },
+            ].map(({ icon: Icon, href }, i) => (
+              <motion.a
+                key={i}
+                whileHover={{ y: -3, color: 'var(--accent)' }}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: 'var(--muted)', transition: 'color 0.2s' }}
+              >
+                <Icon size={20} />
+              </motion.a>
+            ))}
           </motion.div>
         </motion.div>
 
-        {/* Decorative background blur blob centralized */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 0, pointerEvents: 'none' }}
-        >
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.1, 0.2, 0.1],
+        {/* Background glow orbs */}
+        <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', zIndex: 0 }}>
+          <motion.div
+            animate={{
+              scale: [1, 1.15, 1],
+              opacity: [0.12, 0.2, 0.12],
             }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
             style={{
-              width: '400px',
-              height: '400px',
-              background: 'var(--accent)',
-              filter: 'blur(150px)',
+              position: 'absolute',
+              top: '30%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: 'min(450px, 80vw)',
+              height: 'min(450px, 80vw)',
+              background: 'radial-gradient(circle, rgba(129,140,248,0.15) 0%, rgba(167,139,250,0.08) 40%, transparent 70%)',
               borderRadius: '50%',
-            }} 
+              filter: 'blur(60px)',
+            }}
           />
-        </motion.div>
-
+          <motion.div
+            animate={{
+              scale: [1, 1.1, 1],
+              opacity: [0.06, 0.1, 0.06],
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+            style={{
+              position: 'absolute',
+              bottom: '10%',
+              right: '15%',
+              width: 'min(250px, 40vw)',
+              height: 'min(250px, 40vw)',
+              background: 'radial-gradient(circle, rgba(192,132,252,0.15) 0%, transparent 70%)',
+              borderRadius: '50%',
+              filter: 'blur(50px)',
+            }}
+          />
+        </div>
       </div>
     </section>
   );
